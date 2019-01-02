@@ -29,7 +29,7 @@ stages {
 							echo "       	BUILD_FILE: $(pwd)/ABC.exe"
 							echo " -------------------------------- $(pwd)" 
 							
-							[[ -d '/home/ec2-user/workspace/Build' ]] || mkdir --parents '/home/ec2-user/workspace/Build'
+							[[ -d '/home/ec2-user/workspace/Build' ]] || sudo mkdir --parents '/home/ec2-user/workspace/Build'
 							cd /home/ec2-user/workspace/Build
 							[[ -d "/home/ec2-user/workspace/Build/artifactory" ]] && rm -rf /home/ec2-user/workspace/Build/artifactory 
 							git clone git@github.com:harishbhee/artifactory.git
