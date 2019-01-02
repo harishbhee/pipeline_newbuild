@@ -28,7 +28,9 @@ stages {
 							echo -e "\nSTEP 4:	Build Successful"
 							echo "       	BUILD_FILE: $(pwd)/ABC.exe"
 							echo " -------------------------------- $(pwd)" 
-							[[ -d '/opt/jenkins/workspace/Build' ]] || sudo mkdir --parents '/opt/jenkins/workspace/Build'
+							sudo su
+							cd ..
+							[[ -d '/opt/jenkins/workspace/Build' ]] || mkdir --parents '/opt/jenkins/workspace/Build'
 							cd /opt/jenkins/workspace/Build/
 							[[ -d "/opt/jenkins/workspace/Build/artifactory" ]] && rm -rf /opt/jenkins/workspace/Build/artifactory 
 							git clone git@github.com:harishbhee/artifactory.git
@@ -72,7 +74,7 @@ stages {
 					set +x
 
 					[[ -d "./artifactory" ]] && rm -rf ./artifactory 
-					git clone git@github.com:Anirudh48/artifactory.git
+					git clone git@github.com:harishbhee/artifactory.git
 					cd artifactory
 					file=$(ls ABC_* | sort -n | tail -1) 
 
@@ -102,7 +104,7 @@ stages {
 				set +x
 
 					[[ -d "./artifactory" ]] && rm -rf ./artifactory 
-					git clone git@github.com:Anirudh48/artifactory.git
+					git clone git@github.com:harishbhee/artifactory.git
 					cd artifactory
 					file=$(ls ABC_* | sort -n | tail -1)
 					
