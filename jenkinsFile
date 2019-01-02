@@ -28,10 +28,10 @@ stages {
 							echo -e "\nSTEP 4:	Build Successful"
 							echo "       	BUILD_FILE: $(pwd)/ABC.exe"
 							echo " -------------------------------- $(pwd)" 
-							
-							[[ -d '/home/ec2-user/workspace/Build' ]] || sudo mkdir --parents '/home/ec2-user/workspace/Build'
-							cd /home/ec2-user/workspace/Build
-							[[ -d "/home/ec2-user/workspace/Build/artifactory" ]] && rm -rf /home/ec2-user/workspace/Build/artifactory 
+							sudo su - jenkins-slave-01
+							[[ -d '/home/jenkins-slave-01/workspace/Build' ]] || sudo mkdir --parents '/home/jenkins-slave-01/workspace/Build'
+							cd /home/jenkins-slave-01/workspace/Build
+							[[ -d "/home/jenkins-slave-01/workspace/Build/artifactory" ]] && rm -rf /home/jenkins-slave-01/workspace/Build/artifactory 
 							git clone git@github.com:harishbhee/artifactory.git
 							cd artifactory
 							file=$(ls ABC_* | sort -n | tail -1)
@@ -44,7 +44,7 @@ stages {
 							fi    
 							echo -e "\nLAST_BUILD: $file \nOLD_BUILD_VERSION: $old_version \nNEW_BUILD_VERSION: $new_version"
 							
-							cp "/home/ec2-user/workspace/Build/c_programs/ABC.exe" "/home/ec2-user/workspace/Build/artifactory/ABC_v${new_version}.exe"
+							cp "/home/jenkins-slave-01/workspace/Build/c_programs/ABC.exe" "/home/jenkins-slave-01/workspace/Build/artifactory/ABC_v${new_version}.exe"
 							
 							git config --global push.default simple
 							git config --global user.name "Jenkins"
